@@ -85,3 +85,45 @@ function letTest() {
 
 letTest();
 console.log(`CONST - Outside Function: ${b}`); // 12
+
+
+/*
+  HOISTING
+
+  When we write and run JavaScript, our file get read 2 times
+    1. Look for Variable Names, Functions, and store those in memory
+    2. Variables are assigned values, and we execute our code.
+
+    Certain Values, such as let or const, do NOT get hoisted
+*/
+// var myName;
+
+// A valid variable, automatically uses the "var" keyword
+// myName = "Jerome";
+
+console.log(myName);
+let myName = "Jerome";
+/*
+  When I run both lines of this code, I am given a reference Error. cannot access myName before initialization
+    - because myName is a "let" variable, my code knows it exists, however I have not yet declared or assigned it a value on line 104, so I get an error
+  
+  When I simply run the console.log(). I am given a reference Error. myName is not defined
+    - this is becasue I do not have ANY variable named myName when I only run the console.log()
+*/
+
+example();
+
+// Function Declarations DO get hoisted, meaning I can call them higher within my file than I have defined them
+function example() {
+  // console.log(exampleVariable);
+  // let exampleVariable = "something cool";
+  console.log('YES! I do get hoisted!');
+}
+
+// coolFunction();
+// Function Expressions do NOT get hoisted, and follow the rules of whichever keyword was used
+let coolFunction = () => {
+  console.log('This is a cool function!');
+}
+
+coolFunction();
