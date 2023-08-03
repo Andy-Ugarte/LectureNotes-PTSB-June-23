@@ -187,3 +187,126 @@ filter(console.log);
 //     return movie.name;
 //   }
 // });
+
+
+// .find method
+// Setup
+let tmnt = [
+  'Mikey', 'Donnie', 'Leo', 'Raph', 'Splinter', 'Shredder', 'April'
+];
+
+let character = 'Leo';
+
+function search(target) {
+  return target === character;
+}
+
+// use the .find() method to search an array for a value.
+// the .find method does take a callback function to run on each value. in this case, we are checking for the name 'Leo'
+console.log('Find:', tmnt.find(search)); // Leo
+
+character = 'Baxter';
+console.log('Baxter:', tmnt.find(target => target === character)); // undefined
+
+
+// .forEach method
+// forEach method is going to perform the same task on each element of an array. this will not modify the original array
+
+let newFoodList = [
+  'apple', 'pear', 'cheese', 'peach', 'pizza'
+];
+
+for(let i = 0; i < newFoodList.length; i++) {
+  console.log(newFoodList[i]);
+}
+
+// forEach method
+// newFoodList.forEach(food => console.log('forEach:', food));
+let doubleNewFood = newFoodList.forEach(food => console.log('forEach:', food));
+// .forEach() method does NOT return ANY values, it simply runs the function provided on each element of the array.
+console.log('Double New Food:', doubleNewFood);
+
+
+// .map method
+// loop over an array, and take in a callback function and perform a task on each item within it
+let numbers = [1, 2, 3, 4, 5];
+
+// numbers.map(num => console.log(num ** 2));
+// UNLIKE .forEach() method, .map() method DOES return a value each time it runs the function. In this case, console.log does not return a value, so we get "undefined" as our information in a new array from the .map() method
+let exampleNumbers = numbers.map((num) => {
+  console.log(num ** 2);
+  return num ** 2;
+});
+console.log('exampleNumbers:', exampleNumbers);
+
+
+// DESTRUCTURING
+/*
+  Array destructuring allows us to unpack values from arrays, or even properties from objects, into distinct variables
+
+  Destructuring syntax looks very similar to array literals, buti s on the LEFT side of the assignment operator (=)
+*/
+
+let fullName = ['Jerome', 'Flaherty'];
+/* 
+let firstName = fullName[0]; // assign the first index of fullName to firstName
+let lastName = fullName[1];
+ */
+// let [firstName, lastName] = fullName; // Destructuring an array
+let [,lastName] = fullName; // Destructuring an array
+// Destructuring will follow index order when assigning variables. Whichever variable is declared first, will take the first index. We may also add commas (,) in order to skip indexes we do not want
+
+// console.log('first:', firstName);
+console.log('last:', lastName);
+
+// SPREAD OPERATOR
+/*
+  the spread operator is going to take values from an array, and "spread" them out, giving us a list of each value individually. This is NOT given to us as an array, rather it is each value independantly
+*/
+
+let characterName = ['Robert', 'Downey', 'Jr.'];
+
+console.log(characterName);
+console.log(...characterName); // spread operator
+// console.log('Robert', 'Downey', 'Jr.'); // this is the result of that spread operator
+
+// by wrapping the spread operator in square brackets, we can create a new array containing each same value from an old array. This will avoid having duplicate reference issues
+let ironMan = [...characterName];
+
+ironMan[0] = 'Tony';
+
+console.log('iron man:', ironMan);
+
+/*
+  Using this example
+  let numberTest = 112;
+  let fullName = ['Jerome', 'Flaherty'];
+  let newFullName = fullName;
+
+  let firstName = fullName[0];
+  ------------------------------------
+  VARIABLES
+  NAME                            VALUE
+  firstName                      'Jerome'
+  numberTest                   112
+  fullName                        FIRST_BUFFER
+  newFullName                 FIRST_BUFFER
+  -------------------------------------
+  FIRST_BUFFER
+  POSITION                     VALUE
+  0                                    'Jerome'
+  1                                    'Flaherty'
+*/
+
+// REST SYNTAX
+// when we destructure an array, sometimes we only want some information, and don't really mind keeping the rest in an array. This is where Rest Syntax comes in useful.
+
+let uprightStaff = ['Jerome', 'Ian', 'Conor'];
+// const [,,,chameleon] = uprightStaff;
+const [instructor, ...learningAssistant] = uprightStaff;
+// const [...instructor] = uprightStaff;
+// Rest Syntax will add the remaining items in the array ALL to the final variable as a new array. rest syntax MUST be the FINAL item within a destructuring.
+
+// console.log(chameleon); // undefined
+console.log(instructor);
+console.log(learningAssistant);
